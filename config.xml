@@ -18,7 +18,7 @@
     <preference name="windows-target-version" value="10.0" />
     <preference name="windows-phone-target-version" value="10.0" />
         
-	<platform name="android" />
+	<platform name="winphone" />
 		
     <splash src="icon.png" platform="winphone" />
 	
