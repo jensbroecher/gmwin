@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="main.css" rel="stylesheet" type="text/css">
+<link href="animate.min.css" rel="stylesheet" type="text/css">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
+<script type="text/javascript" charset="utf-8" src="jquery.min.js"></script>
+<script type="text/javascript" src="preventreload.js"></script>
+    
+<script type="text/javascript" src="materialize.js"></script>
+<link href="waves.css" rel="stylesheet" type="text/css">
+    
+<script type="text/javascript">
+    
+// Check if update is available
+    
+$(document).ready(function() {
+    
+$.get( "http://enunua.com/gormahia/check_app_update.php",  function( data ) {
+    var currentversion = "7";
+    var serverversion = data;
+    if (currentversion < serverversion) {
+        alert("Update available. Please install the latest version from google play.");
+        window.open('http://gormahia.club', '_system');
+    }
+});
+
+});
+
+</script>
+    
+<script type="text/javascript">
+    
+// Check if there was a registration attempt
+    
+$( document ).ready(function() {
+    
+var reg_complete        = localStorage.getItem('reg_complete');
+
+if(reg_complete == 'reg_ok') {
+    
+var email_en        = localStorage.getItem('reg_email_en');
+    
+$.get( "http://enunua.com/gormahia/email-check.php?email_en="+email_en+"",  function( data ) {
+       if(data == "false") {
+           localStorage.removeItem('reg_complete');
+       }
+       if(data == "true") {
+            get_reg_info();
+       }
+});
+    
+function get_reg_info() {
+    
+var pin_en       = localStorage.getItem('reg_pin_en');
+var city_en        = localStorage.getItem('reg_city_en');
+var gender_en        = localStorage.getItem('reg_gender_en');
+var phone_en        = localStorage.getItem('reg_phone_en');
+var email_en        = localStorage.getItem('reg_email_en');
+var age_en        = localStorage.getItem('reg_age_en');
+var last_name_en        = localStorage.getItem('reg_last_name_en');
+var first_name_en       = localStorage.getItem('reg_first_name_en');
+var xlat        = localStorage.getItem('reg_xlat');
+var xlong        = localStorage.getItem('reg_xlong');
+var amount        = localStorage.getItem('reg_amount');
+
+var reg_complete_decision = confirm('We noticed you tried to register as a fan before.\n\nWe kept your entries for you. If you have not recieved your fan number yet, would you like to complete your registration now?\n\nFirst Name: '+first_name_en+'\nLast Name: '+last_name_en+'\nCity: '+city_en+'\nGender: '+gender_en+'\nPhone: '+phone_en+'\nE-Mail: '+email_en+'\nDate of Birth: '+age_en+'\nPIN: '+pin_en+'\n');
+if (reg_complete_decision == true) {
+   
+    
+window.location.replace('http://enunua.com/gormahia/fan_number.php?pin_en='+pin_en+'&city_en='+city_en+'&gender_en='+gender_en+'&phone_en='+phone_en+'&email_en='+email_en+'&age_en='+age_en+'&last_name_en='+last_name_en+'&first_name_en='+first_name_en+'&lat='+xlat+'&long='+xlong+'&amount='+amount+'');
+    
+    
+} else {
+   var reg_complete_decision_reset = confirm('Would you like to remove your registration info?');
+
+if (reg_complete_decision_reset == true) {
+   localStorage.removeItem('reg_complete');
+    alert('Registration info removed.');
+} else {
+  
+}
+}
+
+}
+
+}
+
+});
+</script>
+
+<script type="text/javascript">
+
+function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // Cordova is loaded and it is now safe to make calls Cordova methods
+    //
+    function onDeviceReady() {
+        init();
+        screen.lockOrientation('portrait');
+    }
+
+$( document ).ready(function() {
+var rememberuser = localStorage.getItem('rememberuser');
+
+if (rememberuser == 'Yes') {
+var activefan = localStorage.getItem('activefan');
+
+window.location.replace('main/start.html?activefan='+activefan+'#news');
+}
+
+slideshowloop();
+
+setTimeout(function(){
+document.getElementById("startscreen").style.display = "block";
+document.getElementById("startscreen").className = "animated fadeIn";
+}, 1500);
+
+});
+
+function slideshowloop() {
+
+setTimeout(function(){
+document.getElementById("fans").className = "animated fadeOut";
+}, 5000);
+setTimeout(function(){
+document.getElementById("fans").style.display = "none";
+document.getElementById("fans2").className = "animated fadeIn";
+document.getElementById("fans2").style.display = "block";
+}, 6000);
+
+setTimeout(function(){
+document.getElementById("fans2").className = "animated fadeOut";
+}, 11000);
+setTimeout(function(){
+document.getElementById("fans2").style.display = "none";
+document.getElementById("fans2").className = "animated fadeOut";
+document.getElementById("fans").style.display = "block";
+document.getElementById("fans").className = "animated fadeIn";
+slideshowloop();
+}, 12000);
+
+}
+
+function showindicator() {
+	document.getElementById("loadingindicator").className = "animated fadeIn";
+document.getElementById("loadingindicator").style.display = "block";
+}
+
+function letsgo() {
+	showindicator();
+	setTimeout(function(){
+	document.location.href = 'check.html';
+	}, 2000);
+}
+
+// Wait for PhoneGap to load
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function playAudio() {
+  //var audioElement = document.getElementById(id);
+  //var url = audioElement.getAttribute('src');
+  var my_media = new Media('http://enunua.com/gormahia/kogalo.mp3',
+  // success callback
+  function () { console.log("playAudio():Audio Success"); },
+  // error callback
+  function (err) { console.log("playAudio():Audio Error: " + err); });
+  // Play audio
+  my_media.play();
+}
+
+function plswait() {
+document.getElementById('audiobutton').style.display = "none";
+}
+function plswaitweg() {
+document.getElementById('audiobutton').style.display = "block";
+}
+
+
+function init() {
+
+}
+
+document.addEventListener('deviceready', function () {
+  // Enable to debug issues.
+  // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+  
+  var notificationOpenedCallback = function(jsonData) {
+    console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+  };
+
+  window.plugins.OneSignal.init("e2208c1d-2c91-40a7-b094-7117a4975cfd",
+                                 {googleProjectNumber: "1074986176841"},
+                                 notificationOpenedCallback);
+  
+  // Show an alert box if a notification comes in when the user is in your app.
+  window.plugins.OneSignal.enableInAppAlertNotification(true);
+}, false);
+
+
+
+</script>
+
+</head>
+
+<body>
+
+<div id="audiobutton" class="animated fadeIn" onclick="plswait();playAudio();"></div>
+
+<div id="fortablets">
+<img src="logo_wide.png" width="100%">
+<br><br>
+<button class="waves-effect waves-dark" onclick="localStorage.setItem('lang','eng');letsgo();">Start</button>
+</div>
+
+<div id="loadingindicator" style="display:none">
+<img src="burnball.gif" width="40%">
+</div>
+
+<div id="startscreen" style="display:none;">
+
+<img id="logo" src="logo.png" width="100%">
+<h1 style="display:none;">Select Language</h1>
+
+<button id="startbutton" class="waves-effect waves-dark"  onclick="localStorage.setItem('lang','eng');letsgo();" style="background-color:white !important;">Start</button>
+<button style="display:none;" onclick="localStorage.setItem('lang','swa');letsgo();">Kiswahili</button>
+
+<div id="fans"></div>
+<div id="fans2"></div>
+
+</div>
+
+</body>
+</html>

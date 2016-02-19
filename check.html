@@ -1,0 +1,394 @@
+<!doctype html>
+<html class="soccerfieldhtml">
+<head>
+<meta charset="utf-8">
+<link href="main.css" rel="stylesheet" type="text/css">
+<link href="animate.min.css" rel="stylesheet" type="text/css">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+<script type="text/javascript" src="cordova.js"></script>
+
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.validate.min.js"></script>
+<script type="text/javascript" src="screens.js"></script>
+    
+<script type="text/javascript" src="preventreload.js"></script>
+    
+<script type="text/javascript" src="materialize.js"></script>
+<link href="waves.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<div id="loadingindicator" class="animated fadeOut">
+<img src="burnball.gif" width="40%">
+</div>
+
+<body class="soccerfield" style="margin-top: 70px;">
+
+<div id="mainbar" class="animated fadeIn"></div>
+
+<div id="offline" class="animated fadeIn">
+<img src="main/img/cloud.png">
+<div>You are offline. This app requires an active internet connection.</div>
+</div>
+      
+<div style="display:none;" onClick="plswaitweg()" id="waitpls"><p id="audio_position"></p></div>
+
+<div id="mainholder">
+
+<div class="animated fadeIn infobox startbox">
+
+<span class="eng">
+Register as an <strong>Official Gor Mahia FC Fan</strong> and support the club! <br><br>Our Gor Mahia Fan Club App will let you view news & videos on the go and connect with other Gor Mahia fans.</span>
+<span class="swa">
+Kupata kusajiliwa kama shabiki rasmi wa <strong>Gor Mahia FC</strong> pamoja na mchango mdogo katika klabu na upatikanaji wa habari. Habari zinazo zipuka, mchezaji kupata maelezo rasmi Kipekee, kupakua na bidhaa  zaidi! + Kuingia mashindano yetu kwa mtandao, nakupata nafasi ya kushinda! </span>
+
+</div>
+
+<div class="animated fadeIn infobox">
+
+<span class="eng">
+<h1>Register as an official Gor Mahia fan?</h1>
+</span>
+<span class="swa">
+Kujiandikisha kama shabiki rasmi wa Gor Mahia FC?
+</span>
+
+<span class="eng">
+<center>
+<button class="waves-effect waves-dark" onclick="setTimeout(function(){ register(); }, 1000);">
+    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M4,3C2.89,3 2,3.89 2,5V15A2,2 0 0,0 4,17H12V22L15,19L18,22V17H20A2,2 0 0,0 22,15V8L22,6V5A2,2 0 0,0 20,3H16V3H4M12,5L15,7L18,5V8.5L21,10L18,11.5V15L15,13L12,15V11.5L9,10L12,8.5V5M4,5H9V7H4V5M4,9H7V11H4V9M4,13H9V15H4V13Z" />
+</svg>
+    
+    Register</button>
+</center>
+
+</span>
+<span class="swa">
+<button class="waves-effect waves-dark" onclick="alert('Coming soon...');">Kusajiliwa</button>
+</span>
+
+
+
+<span class="eng">
+<h1>Are you already registered as a fan?</h1>
+</span>
+<span class="swa">
+Je, tayari kusajiliwa kama shabiki?
+</span>
+
+<span class="eng">
+
+<center>
+<button class="waves-effect waves-dark" onclick="setTimeout(function(){ loginwithnumberandpin(); }, 1000);">
+    
+    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12M17,12L12,7V10H8V14H12V17L17,12Z" />
+</svg>
+    
+    Login</button>
+</center>
+    
+<span class="eng">
+<h1>Need help? Questions?</h1>
+</span>
+
+<center>
+<button class="waves-effect waves-dark" onclick="setTimeout(function(){ support(); }, 1000);">
+    
+    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z" />
+</svg>
+    
+    Support</button>
+</center>
+
+</span>
+<span class="swa">
+<button style="width:200px;" onclick="alert('Coming soon...');">Ingia</button>
+</span>
+
+</div>
+
+</div>
+
+<div id="loginwithnumberandpin" class="animated zoomIn layerbox">
+<span class="eng">
+<h1>Login</h1>
+</span>
+<span class="swa">
+Tafadhali kuingia shabiki namba yako na PIN.
+</span>
+
+<span class="swa">
+<input type="text" class="textfield" placeholder="Shabiki idadi">
+
+<button style="width:200px;" onclick="alert('Coming soon...');">Ingia</button>
+</span>
+
+<span class="eng">
+
+<form id="login_check">
+
+<input required id="loginfannumberormail" name="loginfannumberormail" type="text" class="textfield" placeholder="Fan-Number or E-Mail">
+    
+<br>
+
+<input style="width:90px; font-size:17px; text-align:center; margin-right:5px;" required id="loginpin" maxlength="4" name="loginpin" type="tel" class="textfield" placeholder="PIN">
+
+    <br><br>
+    
+<button style="width:200px;" class="waves-effect waves-dark">
+    
+    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12M17,12L12,7V10H8V14H12V17L17,12Z" />
+</svg>
+    
+    Login</button>
+
+</form>
+</span>
+
+<script type="text/javascript">
+$("#login_check").validate({
+	rules: {
+    loginfannumberormail: {
+      required: true
+    },
+	loginpin: {
+      required: true,
+	  number: true,
+	  minlength: 4,
+	  maxlength: 4
+    }
+  },
+  messages: {
+            loginfannumberormail: {
+                required: "Enter Fan-Number or E-Mail Address." },
+			loginpin: {
+                required: "Please enter your PIN.",
+				number: "PIN must be a number.",
+				minlength: "PIN must be 4 digits.",
+				maxlength: "PIN must be 4 digits." }
+            },
+  submitHandler: function(form) {
+    loginwithnumberandpingo();
+  }
+ });
+</script>
+
+</div>
+
+<div id="registeraccount" class="animated zoomIn layerbox">
+
+<span id="register1" class="animated fadeIn">
+
+<h1>Personal Details</h1>
+    
+<div class="animated fadeIn" style="-webkit-animation-delay:1s;">
+<img src="img/123/numeric-1-box.svg">
+<img src="img/123/numeric-2-box-outline.svg">
+<img src="img/123/numeric-3-box-outline.svg">
+</div>
+
+<form id="registernext_step_1">
+
+<input name="first_name_en" id="first_name_en" type="text" class="textfield" required placeholder="First Name">
+<input name="last_name_en" id="last_name_en" type="text" class="textfield" required placeholder="Last Name">
+<input name="email_en" id="email_en" type="email" class="textfield" placeholder="E-Mail (Recommended)">
+<input name="phone_en" id="phone_en" type="tel" class="textfield" required placeholder="Phone">
+
+<button class="waves-effect waves-dark" id="next1">
+    
+    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+</svg>
+    
+    Next</button>
+</form>
+
+<script type="text/javascript">
+
+$.validator.addMethod('phone', function(value, element) {
+    return this.optional(element) || (/^\d{7,}$/).test(value.replace(/[\s()+\-\.]|ext/gi, ''));
+});
+
+$("#registernext_step_1").validate({
+		rules: {
+    email_en: {
+      required: false,
+      email: true,
+      remote: "http://enunua.com/gormahia/email-check.php"
+	  },
+    phone_en: {
+      required: true,
+      phone: true,
+      minlength: 7
+    }
+  },
+  messages: {
+      email_en: {
+	required: "This field is required.",
+      email: "Invalid Email Address.",
+      remote: "E-Mail already in use."
+			},
+    phone_en: {
+      required: "Please enter a phone number.",
+      phone: "Please enter a phone number." }
+            },
+  submitHandler: function(form) {
+    registernext();
+  }
+ });
+</script>
+
+</span>
+
+<span id="register2" class="animated fadeIn" style="display:none;">
+
+<h1>Personal Details</h1>
+    
+<div class="animated fadeIn" style="-webkit-animation-delay:1s;">
+<img src="img/123/numeric-1-box-outline.svg">
+<img src="img/123/numeric-2-box.svg">
+<img src="img/123/numeric-3-box-outline.svg">
+</div>
+
+<form id="registernext2_step2">
+
+<select class="textfield" name="gender" required id="gender_en">
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+</select>
+
+Date of birth: <input name="age_en" style="height: 27px; width: 130px;" id="age_en" type="date" class="textfield" placeholder="Date of birth (Optional)">
+
+<input name="city_en" id="city_en" type="text" required class="textfield" placeholder="City">
+
+<button class="waves-effect waves-dark" type="button" onclick="registerprev();">
+    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>
+    
+    Previous</button>
+<button class="waves-effect waves-dark" id="next2">
+    
+    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+</svg>
+    
+    Next</button>
+</form>
+
+<script type="text/javascript">
+$("#registernext2_step2").validate({
+	rules: {
+    age_en: {
+      required: false
+    }
+  },
+  submitHandler: function(form) {
+    registernext2();
+  }
+ });
+</script>
+
+</span>
+
+<span id="register3" class="animated fadeIn" style="display:none;">
+
+<h1>Set PIN to secure your account</h1>
+    
+<div class="animated fadeIn" style="-webkit-animation-delay:1s;">
+<img src="img/123/numeric-1-box-outline.svg">
+<img src="img/123/numeric-2-box-outline.svg">
+<img src="img/123/numeric-3-box.svg">
+</div>
+    
+<form id="complete" action="javascript:complete_eng();">
+Please provide a 4-Digit PIN. It is used to login on other devices. Never share this PIN with anyone.<br>
+<input style="width:90px; font-size:17px; text-align:center; margin-right:5px;" type="tel" name="pin" required class="textfield" id="pin_en" placeholder="PIN" oninput="maxLengthCheck(this)"
+ maxlength = "4"
+ pattern=".{4,}"> 
+    
+    <br><br>
+
+<button class="waves-effect waves-dark" type="button" onclick="registerprev2();">
+    
+    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>
+    
+    Previous</button>
+<button class="waves-effect waves-dark">
+    
+    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M16.23,18L12,15.45L7.77,18L8.89,13.19L5.16,9.96L10.08,9.54L12,5L13.92,9.53L18.84,9.95L15.11,13.18L16.23,18M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+</svg>
+    
+    Complete</button>
+<br>By registering you agree to the terms & conditions.
+</form>
+
+<script type="text/javascript">
+$("#complete").validate({
+	rules: {
+    pin: {
+      required: true,
+      number: true,
+	  minlength: 4
+    }
+  },
+  messages: {
+            pin: {
+                required: "PIN required.",
+                minlength: "Enter 4 digits." }
+            },
+  submitHandler: function(form) {
+    contribution();
+  }
+ });
+</script>
+
+</span>
+
+</div>
+
+<div id="contribution" class="animated fadeIn" style="display:none;">
+
+</div>
+
+<div id="fandetails" style="display:none;"></div>
+    
+<div id="support" class="animated zoomIn layerbox">
+<span class="eng">
+<h1>Support</h1>
+    If you have any problems registering or logging in, or have any questions or suggestions, please contact our support team at <div class="mailbutton" onclick="window.open('mailto:info@gormahia.club?subject=Gor Mahia Fan Club App', '_system');">
+
+    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M20,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6A2,2 0 0,0 20,4M20,18H4V8L12,13L20,8V18M20,6L12,11L4,6V6H20V6Z" />
+</svg>
+    info@gormahia.club</div>
+<center>
+    
+<script>
+function support_ok() {
+    setTimeout(function(){ location.reload(); }, 1000);
+}   
+</script>
+    
+<button style="width:100px;" class="waves-effect waves-dark" onclick="support_ok();">
+    
+<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>
+    
+    </button>
+</center>
+</span>
+</div>
+
+</body>
+</html>

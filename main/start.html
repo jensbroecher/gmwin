@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Gor Mahia F.C.</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/demo.css">
+	
+	<style>
+		#mainbar {
+
+		}
+	</style>
+
+    <!-- Pushy CSS -->
+    <link rel="stylesheet" href="css/pushy.css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="../cordova.js"></script>
+
+    <!-- jQuery -->
+    <script src="js/vendor/jquery-1.10.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')
+
+    </script>
+
+    <script type="text/javascript" src="../preventreload.js"></script>
+
+    <!-- Modernizr -->
+    <script src="js/vendor/modernizr.custom.71422.js"></script>
+
+    <script type="text/javascript" src="qrcode.min.js"></script>
+
+    <script type="text/javascript">
+        // Check if update is available
+
+        $(document).ready(function() {
+
+            $.get("http://enunua.com/gormahia/check_app_update.php", function(data) {
+                var currentversion = "7";
+                var serverversion = data;
+                if (currentversion < serverversion) {
+                    alert("Update available. Please install the latest version from google play.");
+                    // window.open('http://gormahia.club', '_system');
+                }
+            });
+
+        });
+
+    </script>
+
+
+    <script type="text/javascript" charset="utf-8">
+        document.addEventListener("deviceready", function() {
+            screen.unlockOrientation();
+        });
+
+        function checkNetConnection() {
+
+            var activefan = localStorage.getItem('activefan');
+
+            jQuery.ajaxSetup({
+                async: true
+            });
+            re = "";
+            r = Math.round(Math.random() * 10000);
+            $.get("http://enunua.com/gormahia/on.php?id=" + activefan + "", {
+                subins: r
+            }, function(d) {
+
+                onOnline();
+
+                document.getElementById("oncom").innerHTML = d;
+
+                m1 = document.getElementById("m1").innerHTML;
+                m2 = document.getElementById("m2").innerHTML;
+
+                console.log("" + m1 + " und " + m2 + "");
+
+                if (m1 == "wa") {
+                    $.get("http://enunua.com/gormahia/on.php?task=reset&id=" + activefan + "", function() {
+                        window.open("http://enunua.com/gormahia/social/share_wa.php?task=news&id=" + m2 + "", "_system");
+                    });
+                }
+                if (m1 == "tw") {
+                    $.get("http://enunua.com/gormahia/on.php?task=reset&id=" + activefan + "", function() {
+                        window.open("http://enunua.com/gormahia/social/share_tw.php?task=news&id=" + m2 + "", "_system");
+                    });
+                }
+                if (m1 == "fb") {
+                    $.get("http://enunua.com/gormahia/on.php?task=reset&id=" + activefan + "", function() {
+                        window.open("http://enunua.com/gormahia/social/share_fb.php?task=news&id=" + m2 + "", "_system");
+                    });
+                }
+
+            }).error(function() {
+                re = false;
+
+                onOffline();
+
+            });
+            return re;
+        }
+
+        function onOnline() {
+            document.getElementById('offlinenotice').className = 'animated fadeOutUp';
+            setTimeout(function() {
+                document.getElementById('offlinenotice').style.display = 'none';
+            }, 1000);
+        }
+
+        function onOffline() {
+            document.getElementById('offlinenotice').style.display = 'block';
+            document.getElementById('offlinenotice').className = 'animated fadeInDown';
+        }
+
+        function checkonload() {
+
+            location.href = '#membership';
+
+            setInterval(function() {
+                checkNetConnection();
+            }, 3000);
+
+        }
+
+    </script>
+
+    <script>
+        $(document).ready(function() {
+
+            // window_height = $(window).height();
+            // document.getElementById("div1").style.height = ""+window_height+"px";
+
+            $("#start_menu").load("http://enunua.com/gormahia/start_menu.php?fannumber=" + activefan + "", function(responseTxt, statusTxt, xhr) {
+                $.getScript('js/pushy.min.js');
+            });
+
+            var activefan = localStorage.getItem('activefan');
+            var rememberuser = localStorage.getItem('rememberuser');
+
+            // alert(rememberuser);
+
+            if (rememberuser == null) {
+                alert('We could not load your profile. Please log in again!');
+                document.location.href = '../check.html';
+            } else if (rememberuser != null) {
+
+            }
+
+            $("#fandetails").load("http://enunua.com/gormahia/loadfandetails.php?fannumber=" + activefan + "", function(responseTxt, statusTxt, xhr) {
+
+                $("#loading").fadeIn();
+                $("#div1").load("http://enunua.com/gormahia/news/news.php?fan=" + activefan + "", function(responseTxt, statusTxt, xhr) {
+                    $("#loading").fadeOut();
+                });
+
+            });
+
+        });
+
+        function membershipstart() {
+
+            $("#loading").fadeIn();
+
+            var rememberuser = localStorage.getItem('rememberuser');
+
+            $("#div1").load("membership.html", function(responseTxt, statusTxt, xhr) {
+
+                $("#loading").fadeOut();
+
+                var fan_details_first_name = localStorage.getItem('fan_details_first_name');
+                var fan_details_last_name = localStorage.getItem('fan_details_last_name');
+
+                // alert(fan_details_first_name);
+                // alert(fan_details_last_name);
+
+                document.getElementById('clubcardfanname').innerHTML = "" + fan_details_first_name + " " + fan_details_last_name + "";
+
+                document.getElementById('clubcardfanid').innerHTML = "FAN #" + localStorage.getItem('activefan') + "";
+
+                var qrcode = new QRCode("qrcode", {
+                    text: "" + localStorage.getItem('activefan') + " " + fan_details_first_name + " " + fan_details_last_name + "",
+                    width: 120,
+                    height: 120,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+
+            });
+        }
+
+    </script>
+
+</head>
+
+<body onLoad="checkonload();">
+
+    <div style="display:none;" id="oncom"></div>
+
+    <div id="extconf"></div>
+
+    <div id="helpbox">
+
+        <br>
+        <br> This will display useful information.
+
+        <br>
+        <br>
+
+        <div id="closehelpbox" onclick="
+document.getElementById('helpbox').className = 'animated fadeOutUpBig';
+setTimeout(function(){document.getElementById('helpbox').style.display='none';},1000);
+">close</div>
+
+    </div>
+
+    <div id="sharebox">
+
+        <br>
+
+        <center>Share with your friends:
+        </center>
+
+        <table align="center" border="0" cellpadding="5">
+            <tr>
+
+                <script>
+                    function openemailsharing() {
+                        var activefan = localStorage.getItem('activefan');
+                        window.open('http://enunua.com/gormahia/social/share_em.php?task=shareapp&fan=' + activefan + '', '_system');
+                    }
+
+                </script>
+
+                <td><img width="50" src="img/facebook.png" onclick="window.open('http://enunua.com/gormahia/social/share_fb.php?task=shareapp', '_system');"></td>
+
+                <td><img width="50" src="img/twitter.png" onclick="window.open('http://enunua.com/gormahia/social/share_tw.php?task=shareapp', '_system');"></td>
+
+                <td><img width="50" src="img/mail.png" onclick="openemailsharing();"></td>
+
+                <td><img width="50" src="img/whatsapp.png" onclick="window.open('whatsapp://send?text=Download the Gor Mahia Fan Club App and register as an Official Gor Mahia F.C. Fan. Support your favourite club and view news, live updates, player profiles, exclusive downloads, merchandise and more!', '_system');"></td>
+
+            </tr>
+        </table>
+
+        <div id="closesharebox" onclick="
+document.getElementById('sharebox').className = 'animated fadeOutUpBig';
+setTimeout(function(){document.getElementById('sharebox').style.display='none';},1000);
+">close</div>
+
+    </div>
+
+    <div id="offlinenotice">
+        <img src="img/cloud.png" width="30%">
+        <br> You are offline.
+    </div>
+
+    <div id="mainbar" class="animated fadeInDownBig">
+
+        <div style="float:right">
+
+            <div style="display:none;" onclick="
+    document.getElementById('helpbox').style.display = 'block';
+    document.getElementById('helpbox').className = 'animated fadeInDownBig';
+    " class="topbarbutton">
+                <img src="img/help.png" height="30">
+                <div>Help</div>
+            </div>
+
+            <div onclick="
+    document.getElementById('sharebox').style.display = 'block';
+    document.getElementById('sharebox').className = 'animated fadeInDownBig';
+    " class="topbarbutton">
+                <img src="img/share.png" height="30">
+                <div>Share</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Pushy Menu -->
+
+    <nav class="pushy pushy-left">
+
+        <div id="currentaccount">
+
+            <div id="currentaccountuser" style="display:none;">
+                #<script>
+                    document.write(localStorage.activefan);
+                </script>
+            </div>
+
+            <div id="signoutbutton" onclick="localStorage.removeItem('rememberuser');top.location.href='../check.html'">
+
+                <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M17,17.25V14H10V10H17V6.75L22.25,12L17,17.25M13,2A2,2 0 0,1 15,4V8H13V4H4V20H13V16H15V20A2,2 0 0,1 13,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2H13Z" />
+                </svg>
+
+                logout</div>
+
+        </div>
+
+        <ul id="start_menu"></ul>
+
+    </nav>
+
+
+    <div class="site-overlay"></div>
+
+    <div id="menu-btn" class="menu-btn animated fadeIn" style="-webkit-animation-delay:1.5s;"></div>
+
+    <div id="loading">
+        <div id="spinner"></div>
+    </div>
+
+    <div id="container">
+        <div id="fandetails"></div>
+        <div id="div1"></div>
+    </div>
+
+    <script src="http://enunua.com/gormahia/start_menu.js"></script>
+
+</body>
+</html>

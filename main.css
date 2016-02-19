@@ -1,0 +1,294 @@
+@charset "utf-8";
+body {
+	font-family: sans-serif;
+	font-size: 17px;
+	color: #000;
+	background-color: #006534;
+	text-align: center;
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+.soccerfieldhtml {
+	background-image: url(11144897_916381315095708_3619988195294620170_n.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: cover;
+	height: 100%;
+}
+.startboxx {
+	background-image: url(img/white.png), url(img/Soccer%20ball-128.gif);
+	background-repeat: repeat, no-repeat;
+	background-size: 40% auto, auto auto;
+	background-position: center center;
+	background-color: #FFF !important;
+}
+.soccerfield {
+	background-color: transparent !important;
+}
+select {
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+.eng, .swa {
+	display:none;	
+}
+h1 {
+	color: #026334;
+	text-align: center;
+	padding-top: 0px;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 100%;
+	padding-bottom: 0px;
+	font-family: Roboto, sans-serif;
+	margin-bottom: 5px;
+}
+.textfield {
+	border: 1px solid #999;
+	width: 100%;
+	margin-top: 10px;
+	font-size: 14px;
+	line-height: 200%;
+	text-indent: 5px;
+}
+#logo {
+	background-image: url(img/clouds.gif);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+#offline {
+	color: #000;
+	background-color: #FFF;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	display: none;
+	z-index: 1000000;
+	left: 0px;
+	top: 0px;
+}
+#offline img {
+	width: 30%;
+	margin-right: auto;
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-top: 20px;
+}
+#offline div {
+	color: #747474;
+	padding: 10px;
+}
+#fans {
+	background-image: url(img/fans.png);
+	background-repeat: no-repeat;
+	height: 200px;
+	width: 100%;
+	padding-bottom: 0px;
+	position: absolute;
+	background-size: cover;
+	bottom: 0px;
+	z-index: -1;
+}
+#fans2 {
+	background-image: url(img/fans2.png);
+	background-repeat: no-repeat;
+	height: 200px;
+	width: 100%;
+	padding-bottom: 0px;
+	position: absolute;
+	background-size: cover;
+	bottom: 0px;
+	z-index: -1;
+	display: none;
+}
+#loadingindicator {
+	background-color: #5E9A4C;
+	position: absolute;
+	z-index: 100;
+	height: 100%;
+	width: 100%;
+	left: 0px;
+	top: 0px;
+	text-align: center;
+}
+#contribution {
+	background-color: #FFF;
+	position: absolute;
+	z-index: 10;
+	height: 100%;
+	width: 100%;
+	left: 0px;
+	top: 0px;
+	font-size: 14px;
+	background-image: url(img/gor2015.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.infobox {
+	background-color: rgba(255,255,255,0.8);
+	color: #0A7A26;
+	margin: 10px;
+	font-family: sans-serif;
+	font-weight: normal;
+	font-size: 17px;
+	padding-top: 20px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+	padding-left: 10px;
+	text-align: left;
+    box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.5);
+}
+.layerbox {
+	background-color: rgba(255,255,255,0.8);
+	color: #0A7A26;
+	font-family: sans-serif;
+	font-weight: normal;
+	font-size: 17px;
+	padding-top: 20px;
+	padding-right: 4%;
+	padding-bottom: 20px;
+	padding-left: 4%;
+	position: absolute;
+	z-index: 1;
+	width: 82%;
+	top: 70px;
+	margin-left: 5%;
+	display: none;
+    box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.5);
+}
+
+::-webkit-input-placeholder {  color: #000;}
+:-moz-placeholder { color: #000; }
+
+.blur {
+	pointer-events: none;
+	opacity: 0;
+}
+#loadingindicator img {
+	margin-top: 100px;
+}
+button {
+    font-family: Roboto;
+    border: none;
+	color: #000;
+	background-color: rgba(255,255,255,0.8);
+	text-align: center;
+	width: 200px;
+	display: block;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+	transition: all 0.5s;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 15px;
+	padding-top: 7px;
+	padding-right: 0px;
+	padding-bottom: 6px;
+	padding-left: 0px;
+    box-shadow: 2px 2px 7px 2px rgba(0,0,0,0.3);
+}
+.mailbutton {
+    text-decoration: none;
+    font-family: Roboto;
+    border: none;
+	color: #000;
+	background-color: rgba(255,255,255,0.8);
+	text-align: center;
+	width: 200px;
+	display: block;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+	transition: all 0.5s;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 15px;
+	padding-top: 7px;
+	padding-right: 0px;
+	padding-bottom: 6px;
+	padding-left: 0px;
+    box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.3);
+}
+#audiobutton {
+    background-image: url(img/volume-high.svg);
+    background-size: 100% 100%;
+	text-align: center;
+	width: 35px;
+	height: 35px;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+	transition: all 0.5s;
+	top: 10px;
+	right: 10px;
+	font-size: 16px;
+	position: absolute;
+	z-index: 100;
+}
+button:active {
+  transition: all 0.5s;
+}
+button:focus {
+  outline: none;
+}
+#mainbar {
+	height: 50px;
+	width: 100%;
+	position: fixed;
+	z-index: 100;
+	top: 0px;
+	text-align: center;
+	background-image: url(main/img/logo_on_dark.png);
+	background-color: rgba(0, 102, 52, 0.84);
+	background-repeat: no-repeat;
+	background-size: auto 80%;
+	background-position: center center;
+}
+@media screen and (max-width: 600px){
+#fortablets {
+	display:none;
+}
+}
+@media screen and (min-width: 600px){
+#logo, #startbutton {
+	display:none;
+}
+.infobox, .layerbox {
+	width: 50%;
+	margin-right: 20%;
+	margin-left: 20%;
+	padding: 5%;
+}
+.soccerfield {
+
+}
+#fortablets {
+	display: block;
+	z-index: 10;
+	position: absolute;
+}
+#fans {
+	background-image: url(img/fans.png);
+	background-repeat: no-repeat;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	background-size: cover;
+	z-index: -1;
+}
+#fans2 {
+	background-image: url(img/fans2.png);
+	background-repeat: no-repeat;
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+	bottom: 0px;
+	z-index: -1;
+	display: none;
+}
+}

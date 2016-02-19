@@ -1,0 +1,209 @@
+html, body{
+	overflow-x: hidden; /* prevents horizontal scroll bars */
+	-webkit-tap-highlight-color: rgba(0,0,0,0); /* disable webkit tap highlight */
+}
+
+/* Lists */
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+body {
+	background-color: #FFFFFF;
+    height: 100% !important;
+    margin: 0;
+    padding: 0;
+}
+html {
+    height: 100% !important;
+}
+#helpbox {
+	background-color: rgba(255, 255, 255, 0.9);
+	margin-right: 2%;
+	margin-left: 2%;
+	position: fixed;
+	z-index: 9999999999;
+	display: none;
+	width: 96%;
+	box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.5);
+	top: 0px;
+	padding-bottom: 20px;
+	text-transform: uppercase;
+	font-weight: normal;
+	color: #000;
+}
+#helpelements {
+	text-align: center;	
+}
+#fandetails {
+	display: none;
+}
+
+#helpelements img {
+	border: 5px solid #000;
+	border-radius:5px;
+}
+#offlinenotice {
+	background-color: rgba(255, 255, 255, 0.9);
+	margin-right: 20%;
+	margin-left: 20%;
+	position: fixed;
+	z-index: 9999999999;
+	width: 60%;
+	box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.5);
+	padding-bottom: 5px;
+	font-weight: normal;
+	color: #000;
+	text-align: center;
+	padding-top: 5px;
+	display: none;
+}
+#sharebox {
+	background-color: rgba(255, 255, 255, 0.9);
+	margin-right: 2%;
+	margin-left: 2%;
+	position: fixed;
+	z-index: 9999999999;
+	display: none;
+	width: 96%;
+	box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.5);
+	top: 0px;
+	padding-bottom: 20px;
+}
+.btn {
+	background-color: #FFF;
+	height: 60px;
+	width: 60px;
+	margin-right: 6px;
+}
+#div1 {
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+}
+#contentarea {
+	padding-right: 15px;
+	padding-left: 15px;
+}
+#mainbar {
+	height: 50px;
+	width: 100%;
+	position: fixed;
+	z-index: 100;
+	background-image: url(../img/logo_on_dark.png);
+	top: 0px;
+	text-align: center;
+	background-color: rgba(0, 102, 52, 0.84);
+	background-repeat: no-repeat;
+	background-size: auto 80%;
+	background-position: center center;
+}
+.topbarbutton {
+	font-size: 10px;
+	width: 55px;
+	float: left;
+	color: #FFF;
+	text-align: center;
+	margin-top: 3px;
+}
+#closesharebox {
+	color: #000;
+	padding-top: 5px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	border: 1px solid #000;
+	display: block;
+	width: 100px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	text-transform: capitalize;
+	font-size: 14px;
+	margin-top: 5px;
+	border-radius: 3px;
+	font-weight: normal;
+}
+#closesharebox:hover {
+	color: #FFF;
+	background-color: #000;	
+	transition:all 0.5s;
+}
+#closehelpbox {
+	color: #000;
+	padding-top: 5px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	border: 1px solid #000;
+	display: block;
+	width: 100px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	text-transform: capitalize;
+	font-size: 14px;
+	margin-top: 5px;
+	border-radius: 3px;
+}
+#closehelpbox:hover {
+	color: #FFF;
+	background-color: #000;	
+	transition:all 0.5s;
+}
+
+/* Menu Button */
+.menu-btn {
+	width: 40px;
+	padding: 10px;
+	color: #FFF;
+	text-align: center;
+	cursor: pointer;
+	background-image: url(../img/menu.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	height: 30px;
+	background-position: center center;
+	position: fixed;
+	z-index: 200;
+	top: 0px;
+	left: 0px;
+}
+#loading {
+	margin-right: 2%;
+	margin-left: 2%;
+	position: fixed;
+	z-index: 5;
+	width: 96%;
+	top: 170px;
+	display: none;
+}
+#spinner {
+	background-image: url(../img/ring_5.gif);
+	background-repeat: no-repeat;
+	width: 50%;
+	height: 100px;
+	margin-right: 25%;
+	margin-left: 25%;
+	position: absolute;
+	background-size: auto 100%;
+	background-position: center center;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#waitpls {
+	height: 100%;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.7);
+	display: none;
+	position: absolute;
+	z-index: 1;
+	text-align: center;
+}

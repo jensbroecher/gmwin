@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  
+<script src="jquery.js"></script>
+<script src="../../cordova.js"></script>
+<script src="../../js/plugins/Wallpaper.js"></script>
+
+<link rel="stylesheet" href="style.css">
+<script src="modernizr.min.js"></script>
+
+<script>
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+$('#loadpics').load('http://enunua.com/gormahia/dagouimg/viewpics.php?device=Smartphone&category=Team',function(responseTxt,statusTxt,xhr){});hidwhite();
+}
+
+function hidewhite() {
+	setTimeout(function(){document.getElementById("whitelayer").style.display = 'none';},3000);
+};
+
+</script>
+
+
+<link href="animate.css" rel="stylesheet" type="text/css">
+
+
+<script type="text/javascript" language="javascript">
+<!--
+function goToPage(page) {
+	window.location = page;
+}
+//-->
+</script>
+
+</head>
+
+<body>
+    
+<div id="gobackmainbar" class="animated fadeInLeft" onclick="window.history.back();" style="left: 10px; top: 10px; position:fixed; z-index:1000000;">
+<svg style="width:30px;height:30px" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>
+</div>
+
+<div id="mainbar" class="animated fadeIn"></div>
+
+<div id="loadpics" class=""></div>
+
+<div style="clear:both;"></div>
+
+<br>
+<br>
+<br>
+
+</body>
+</html>
